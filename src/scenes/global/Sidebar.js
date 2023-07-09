@@ -83,7 +83,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  ADMIN
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -137,42 +137,42 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Mata Kuliah"
-              to="/team"
+              to="/matakuliah"
               icon={<BookOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Dosen"
-              to="/contacts"
+              to="/dosen"
               icon={<BadgeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Peserta"
-              to="/contacts"
+              to="/peserta"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Peserta Program Konsorsium"
-              to="/contacts"
+              to="/pesertaKonsorsium"
               icon={<GroupsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Peserta Program XuetangX"
-              to="/contacts"
+              to="/pesertaXuetang"
               icon={<GroupsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Peserta Program edX"
-              to="/contacts"
+              to="/invoices"
               icon={<GroupsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

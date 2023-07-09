@@ -44,9 +44,12 @@ const GeographyChart = ({ isDashboard = false }) => {
       unknownColor="#666666"
       label="properties.name"
       valueFormat=".2s"
-      projectionScale={isDashboard ? 40 : 150}
-      projectionTranslation={isDashboard ? [0.49, 0.6] : [0.5, 0.5]}
-      projectionRotation={[0, 0, 0]}
+      // projectionScale={isDashboard ? 40 : 150}
+      // projectionTranslation={isDashboard ? [0.49, 0.6] : [0.5, 0.5]}
+      // projectionRotation={[0, 0, 0]}
+      projectionScale={200}
+      projectionTranslation={[ 0.7, 0.6 ]}
+      projectionRotation={[ -134, 0, 0 ]}
       borderWidth={1.5}
       borderColor="#ffffff"
       legends={

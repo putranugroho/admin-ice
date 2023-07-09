@@ -86,6 +86,7 @@ export const mockDataContacts = [
     city: "New York",
     zipCode: "10001",
     registrarId: 123512,
+    detail: "Detail"
   },
   {
     id: 2,
@@ -97,6 +98,7 @@ export const mockDataContacts = [
     city: "New York",
     zipCode: "13151",
     registrarId: 123512,
+    detail: "Detail"
   },
   {
     id: 3,
@@ -108,6 +110,7 @@ export const mockDataContacts = [
     city: "New York",
     zipCode: "87281",
     registrarId: 4132513,
+    detail: "Detail"
   },
   {
     id: 4,
@@ -119,6 +122,7 @@ export const mockDataContacts = [
     city: "New York",
     zipCode: "15551",
     registrarId: 123512,
+    detail: "Detail"
   },
   {
     id: 5,
@@ -130,6 +134,7 @@ export const mockDataContacts = [
     city: "Tenting",
     zipCode: "14215",
     registrarId: 123512,
+    detail: "Detail"
   },
   {
     id: 6,
@@ -141,6 +146,7 @@ export const mockDataContacts = [
     city: "Esvazark",
     zipCode: "10001",
     registrarId: 123512,
+    detail: "Detail"
   },
   {
     id: 7,
@@ -152,6 +158,7 @@ export const mockDataContacts = [
     city: "Evertin",
     zipCode: "51523",
     registrarId: 123512,
+    detail: "Detail"
   },
   {
     id: 8,
@@ -163,6 +170,7 @@ export const mockDataContacts = [
     city: "Esteras",
     zipCode: "44215",
     registrarId: 512315,
+    detail: "Detail"
   },
   {
     id: 9,
@@ -174,6 +182,7 @@ export const mockDataContacts = [
     city: "Colunza",
     zipCode: "111234",
     registrarId: 928397,
+    detail: "Detail"
   },
   {
     id: 10,
@@ -185,6 +194,7 @@ export const mockDataContacts = [
     city: "Esteras",
     zipCode: "44215",
     registrarId: 533215,
+    detail: "Detail"
   },
   {
     id: 11,
@@ -196,6 +206,7 @@ export const mockDataContacts = [
     city: "Colunza",
     zipCode: "1234",
     registrarId: 92197,
+    detail: "Detail"
   },
 ];
 
@@ -316,84 +327,56 @@ export const mockTransactions = [
     cost: "133.45",
   },
 ];
-
-export const mockBarData = [
+export const mockYBarData = [
   {
     country: "AD",
-    "hot dog": 137,
-    "hot dogColor": "hsl(229, 70%, 50%)",
-    burger: 96,
-    burgerColor: "hsl(296, 70%, 50%)",
-    kebab: 72,
-    kebabColor: "hsl(97, 70%, 50%)",
     donut: 140,
     donutColor: "hsl(340, 70%, 50%)",
   },
   {
     country: "AE",
-    "hot dog": 55,
-    "hot dogColor": "hsl(307, 70%, 50%)",
-    burger: 28,
-    burgerColor: "hsl(111, 70%, 50%)",
-    kebab: 58,
-    kebabColor: "hsl(273, 70%, 50%)",
     donut: 29,
     donutColor: "hsl(275, 70%, 50%)",
   },
   {
     country: "AF",
-    "hot dog": 109,
-    "hot dogColor": "hsl(72, 70%, 50%)",
-    burger: 23,
-    burgerColor: "hsl(96, 70%, 50%)",
-    kebab: 34,
-    kebabColor: "hsl(106, 70%, 50%)",
     donut: 152,
     donutColor: "hsl(256, 70%, 50%)",
   },
   {
     country: "AG",
-    "hot dog": 133,
-    "hot dogColor": "hsl(257, 70%, 50%)",
-    burger: 52,
-    burgerColor: "hsl(326, 70%, 50%)",
-    kebab: 43,
-    kebabColor: "hsl(110, 70%, 50%)",
     donut: 83,
     donutColor: "hsl(9, 70%, 50%)",
   },
   {
     country: "AI",
-    "hot dog": 81,
-    "hot dogColor": "hsl(190, 70%, 50%)",
-    burger: 80,
-    burgerColor: "hsl(325, 70%, 50%)",
-    kebab: 112,
-    kebabColor: "hsl(54, 70%, 50%)",
     donut: 35,
     donutColor: "hsl(285, 70%, 50%)",
   },
   {
     country: "AL",
-    "hot dog": 66,
-    "hot dogColor": "hsl(208, 70%, 50%)",
-    burger: 111,
-    burgerColor: "hsl(334, 70%, 50%)",
-    kebab: 167,
-    kebabColor: "hsl(182, 70%, 50%)",
     donut: 18,
     donutColor: "hsl(76, 70%, 50%)",
   },
   {
     country: "AM",
-    "hot dog": 80,
-    "hot dogColor": "hsl(87, 70%, 50%)",
-    burger: 47,
-    burgerColor: "hsl(141, 70%, 50%)",
-    kebab: 158,
-    kebabColor: "hsl(224, 70%, 50%)",
     donut: 49,
     donutColor: "hsl(274, 70%, 50%)",
+  },
+];
+
+export const mockBarData = [
+  {
+    country: "Bahasa Inggris",
+    "hot dog": 104,
+    "hot dogColor": "hsl(229, 70%, 50%)",
+    // burger: 104,
+  },
+  {
+    country: "Bahasa Indonesia",
+    "hot dog": 224,
+    "hot dogColor": "hsl(229, 70%, 50%)",
+    // burger: 224,
   },
 ];
 
@@ -430,165 +413,343 @@ export const mockPieData = [
   },
 ];
 
+export const mockPieDataJenjang = [
+  {
+    id: "Non-gelar",
+    label: "Non-gelar",
+    value: 32,
+    percentage: 9.7,
+    color: "hsl(104, 70%, 50%)",
+  },
+  {
+    id: "Sarjana",
+    label: "Sarjana",
+    value: 140,
+    percentage: 42.7,
+    color: "hsl(162, 70%, 50%)",
+  },
+  { 
+    id: "Diploma",
+    label: "Diploma",
+    value: 92,
+    percentage: 28,
+    color: "hsl(291, 70%, 50%)",
+  },
+  {
+    id: "Doktoral",
+    label: "Doktoral",
+    value: 64,
+    percentage: 19.5,
+    color: "hsl(229, 70%, 50%)",
+  },
+];
+
+export const mockPieDataSks = [
+  {
+    id: "1",
+    label: "1",
+    value: 60,
+    percentage: 18.3,
+    color: "hsl(104, 70%, 50%)",
+  },
+  {
+    id: "2",
+    label: "2",
+    value: 58,
+    percentage: 17.7,
+    color: "hsl(162, 70%, 50%)",
+  },
+  { 
+    id: "3",
+    label: "3",
+    value: 72,
+    percentage: 22,
+    color: "hsl(291, 70%, 50%)",
+  },
+  {
+    id: "4",
+    label: "4",
+    value: 88,
+    percentage: 26.8,
+    color: "hsl(229, 70%, 50%)",
+  },
+  {
+    id: ">4",
+    label: ">4",
+    value: 50,
+    percentage: 15.2,
+    color: "hsl(229, 70%, 50%)",
+  },
+];
+
+export const mockPieStatusPeserta = [
+  {
+    id: "Mahasiswa",
+    label: "Mahasiswa",
+    value: 3400,
+    percentage: 54.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Dosen",
+    label: "Dosen",
+    value: 1000,
+    percentage: 16.1,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Tendik",
+    label: "Tendik",
+    value: 608,
+    percentage: 9.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
+
+export const mockPieStatusPT = [
+  {
+    id: "Non Konsorsium",
+    label: "Non Konsorsium",
+    value: 3400,
+    percentage: 54.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Konsorsium",
+    label: "Konsorsium",
+    value: 1000,
+    percentage: 16.1,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Provider",
+    label: "Provider",
+    value: 608,
+    percentage: 9.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
+
+export const mockPieJenisPeserta = [
+  {
+    id: "Umum",
+    label: "Umum",
+    value: 1200,
+    percentage: 19.3,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Mahasiswa",
+    label: "Mahasiswa",
+    value: 3400,
+    percentage: 54.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Dosen",
+    label: "Dosen",
+    value: 1000,
+    percentage: 16.1,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Tendik",
+    label: "Tendik",
+    value: 608,
+    percentage: 9.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
+
+export const mockPieDataDosen = [
+  {
+    id: "Laki-Laki",
+    label: "Laki-Laki",
+    value: 222,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Perempuan",
+    label: "Perempuan",
+    value: 120,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
+
+export const mockPieDataPeserta = [
+  {
+    id: "Laki-Laki",
+    label: "Laki-Laki",
+    value: 4104,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Perempuan",
+    label: "Perempuan",
+    value: 2104,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
+
 export const mockLineData = [
   {
-    id: "japan",
-    color: tokens("dark").greenAccent[500],
+    id: "Mahasiswa",
+    color: tokens("light").grey[100],
     data: [
       {
-        x: "plane",
+        x: "Januari 2023",
         y: 101,
       },
       {
-        x: "helicopter",
+        x: "February 2023",
         y: 75,
       },
       {
-        x: "boat",
+        x: "Maret 2023",
         y: 36,
       },
       {
-        x: "train",
+        x: "April 2023",
         y: 216,
       },
       {
-        x: "subway",
+        x: "Mei 2023",
         y: 35,
       },
       {
-        x: "bus",
+        x: "Juni 2023",
         y: 236,
       },
       {
-        x: "car",
+        x: "Juli 2023",
         y: 88,
       },
       {
-        x: "moto",
+        x: "Agustus 2023",
         y: 232,
       },
       {
-        x: "bicycle",
+        x: "September 2023",
         y: 281,
       },
       {
-        x: "horse",
+        x: "Oktober 2023",
         y: 1,
       },
       {
-        x: "skateboard",
+        x: "November 2023",
         y: 35,
       },
       {
-        x: "others",
+        x: "Desember 2023",
         y: 14,
       },
     ],
   },
   {
-    id: "france",
-    color: tokens("dark").blueAccent[300],
+    id: "Dosen",
+    color: tokens("light").grey[300],
     data: [
       {
-        x: "plane",
+        x: "Januari 2023",
         y: 212,
       },
       {
-        x: "helicopter",
+        x: "February 2023",
         y: 190,
       },
       {
-        x: "boat",
+        x: "Maret 2023",
         y: 270,
       },
       {
-        x: "train",
+        x: "April 2023",
         y: 9,
       },
       {
-        x: "subway",
+        x: "Mei 2023",
         y: 75,
       },
       {
-        x: "bus",
+        x: "Juni 2023",
         y: 175,
       },
       {
-        x: "car",
+        x: "Juli 2023",
         y: 33,
       },
       {
-        x: "moto",
+        x: "Agustus 2023",
         y: 189,
       },
       {
-        x: "bicycle",
+        x: "September 2023",
         y: 97,
       },
       {
-        x: "horse",
+        x: "Oktober 2023",
         y: 87,
       },
       {
-        x: "skateboard",
+        x: "November 2023",
         y: 299,
       },
       {
-        x: "others",
+        x: "Desember 2023",
         y: 251,
       },
     ],
   },
   {
-    id: "us",
-    color: tokens("dark").redAccent[200],
+    id: "Tendik",
+    color: tokens("light").grey[200],
     data: [
       {
-        x: "plane",
+        x: "Januari 2023",
         y: 191,
       },
       {
-        x: "helicopter",
+        x: "February 2023",
         y: 136,
       },
       {
-        x: "boat",
+        x: "Maret 2023",
         y: 91,
       },
       {
-        x: "train",
+        x: "April 2023",
         y: 190,
       },
       {
-        x: "subway",
+        x: "Mei 2023",
         y: 211,
       },
       {
-        x: "bus",
+        x: "Juni 2023",
         y: 152,
       },
       {
-        x: "car",
+        x: "Juli 2023",
         y: 189,
       },
       {
-        x: "moto",
+        x: "Agustus 2023",
         y: 152,
       },
       {
-        x: "bicycle",
+        x: "September 2023",
         y: 8,
       },
       {
-        x: "horse",
+        x: "Oktober 2023",
         y: 197,
       },
       {
-        x: "skateboard",
+        x: "November 2023",
         y: 107,
       },
       {
-        x: "others",
+        x: "Desember 2023",
         y: 170,
       },
     ],
