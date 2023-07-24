@@ -7,6 +7,7 @@ import Team from "./scenes/team";
 import Matakuliah from "./scenes/konten/matakuliah";
 import Dosen from "./scenes/konten/dosen";
 import Peserta from "./scenes/konten/peserta";
+import PerguruanTinggi from "./scenes/konten/perguruanTinggi";
 import PesertaKonsorsium from "./scenes/konten/pesertaKonsorsium";
 import PesertaXuetang from "./scenes/konten/pesertaXuetang";
 import Invoices from "./scenes/invoices";
@@ -38,6 +39,7 @@ function App() {
               <Route path="/matakuliah" element={<Matakuliah />} />
               <Route path="/dosen" element={<Dosen />} />
               <Route path="/peserta" element={<Peserta />} />
+              <Route path="/perguruanTinggi" element={<PerguruanTinggi />} />
               <Route path="/pesertaKonsorsium" element={<PesertaKonsorsium />} />
               <Route path="/pesertaXuetang" element={<PesertaXuetang />} />
               <Route path="/contacts" element={<Contacts />} />
