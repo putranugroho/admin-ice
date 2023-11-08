@@ -20,6 +20,10 @@ import GeographyChart from "../../components/GeographyChart";
 // import { mockPieDataSks as dataSks } from "../../data/mockData";
 import { mockPieJenisPeserta as JenisPeserta } from "../../data/mockData";
 import { mockDataContacts } from "../../data/mockData";
+const dataPeserta = require("../../data/dataPeserta.json");
+
+// var fs = require('fs');
+// var obj = JSON.parse(fs.readFileSync('file', 'utf8'));
 
 const styles = {
     instructor: {
@@ -134,6 +138,7 @@ const Peserta = () => {
   };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  console.log(dataPeserta);
 
   return (
     <Box m="20px">
