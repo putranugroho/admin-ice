@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react'
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -13,53 +13,53 @@ import Header from "../../components/Header";
 // import ProgressCircle from "../../components/ProgressCircle";
 // import DonutChart from "../../components/DonutChart";
 import StatBox from "../../components/StatBox";
-import PieChart from "../../components/PieChart";
-import BarChart from "../../components/YBarChart";
-import GeographyChart from "../../components/GeographyChart";
+// import PieChart from "../../components/PieChart";
+// import BarChart from "../../components/YBarChart";
+// import GeographyChart from "../../components/GeographyChart";
 // import { mockPieDataJenjang as dataJenjang } from "../../data/mockData";
 // import { mockPieDataSks as dataSks } from "../../data/mockData";
-import { mockPieJenisPeserta as JenisPeserta } from "../../data/mockData";
+// import { mockPieJenisPeserta as JenisPeserta } from "../../data/mockData";
 import { mockDataContacts } from "../../data/mockData";
 const dataPeserta = require("../../data/dataPeserta.json");
 
 // var fs = require('fs');
 // var obj = JSON.parse(fs.readFileSync('file', 'utf8'));
 
-const styles = {
-    instructor: {
-        width: "430px",
-        height: "150px",
-        backgroundImage: "url('../../assets/dosen278.png')",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        borderRadius: "15px",
-        marginBottom: "15px"
-    },
-    self: {
-        width: "430px",
-        height: "150px",
-        backgroundImage: "url('../../assets/dosen279.png')",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "contain",
-        borderRadius: "15px"
-    },
-    container: {
-        position: "relative",
-        textAlign: "center",
-    },
-    text: {
-        position: "absolute",
-        width: "200px",
-        top: "70%",
-        left: "27%",
-        transform: "translate(-50%, -50%)",
-        fontSize: "64px",
-        fontFamily: "Montserrat",
-        fontStyle: "normal",
-        fontWeight: "600",
-        lineHeight: "96px",
-    }
-};
+// const styles = {
+//     instructor: {
+//         width: "430px",
+//         height: "150px",
+//         backgroundImage: "url('../../assets/dosen278.png')",
+//         backgroundRepeat: "no-repeat",
+//         backgroundSize: "contain",
+//         borderRadius: "15px",
+//         marginBottom: "15px"
+//     },
+//     self: {
+//         width: "430px",
+//         height: "150px",
+//         backgroundImage: "url('../../assets/dosen279.png')",
+//         backgroundRepeat: "no-repeat",
+//         backgroundSize: "contain",
+//         borderRadius: "15px"
+//     },
+//     container: {
+//         position: "relative",
+//         textAlign: "center",
+//     },
+//     text: {
+//         position: "absolute",
+//         width: "200px",
+//         top: "70%",
+//         left: "27%",
+//         transform: "translate(-50%, -50%)",
+//         fontSize: "64px",
+//         fontFamily: "Montserrat",
+//         fontStyle: "normal",
+//         fontWeight: "600",
+//         lineHeight: "96px",
+//     }
+// };
 
 const columns1 = [
   { field: "id", headerName: "ID", flex: 0.5 },
@@ -107,8 +107,20 @@ const columns3 = [
   { field: "id", headerName: "ID", flex: 0.5 },
 //   { field: "registrarId", headerName: "Kode Dosen" },
   {
-    field: "name",
-    headerName: "Nama Peserta",
+    field: "username",
+    headerName: "Username Peserta",
+    flex: 1,
+    cellClassName: "name-column--cell",
+  },
+  {
+    field: "first_name",
+    headerName: "Nama Depan Peserta",
+    flex: 1,
+    cellClassName: "name-column--cell",
+  },
+  {
+    field: "last_name",
+    headerName: "Nama Belakang Peserta",
     flex: 1,
     cellClassName: "name-column--cell",
   },
@@ -118,13 +130,13 @@ const columns3 = [
     flex: 1,
   },
   {
-    field: "age",
-    headerName: "Umur Peserta",
+    field: "is_active",
+    headerName: "Aktif",
     flex: 1,
   },
   {
-    field: "detail",
-    headerName: "Action",
+    field: "last_login",
+    headerName: "Last Login",
     flex: 1,
   },
 ];
@@ -132,6 +144,7 @@ const columns3 = [
 
 const Peserta = () => {
   const [open, setOpen] = React.useState(true);
+  // const [peserta, setPeserta] = React.useState([])
 
   const handleOpen = () => {
     setOpen(!open);
@@ -139,6 +152,17 @@ const Peserta = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   console.log(dataPeserta);
+
+  // useEffect(() => {
+  //   if (dataPeserta.length !== 0) {
+  //     for (let i = 0; i < dataPeserta.length; i++) {
+  //       if (dataPeserta[i]) {
+  //         const element = array[i];
+  //       }
+        
+  //     }
+  //   }
+  // }, [dataPeserta])
 
   return (
     <Box m="20px">
@@ -243,8 +267,8 @@ const Peserta = () => {
           />
         </Box>
         {/* END ROW 1 */}
-        
-        {/* ROW 2 */}
+         
+        {/* ROW 2 
         <Box
           gridColumn="span 5"
           gridRow="span 2">
@@ -287,9 +311,9 @@ const Peserta = () => {
             <PieChart isDashboard={true} data= {JenisPeserta} legendPos={{translateX:0, itemWidth: 100}}/>
           </Box>
         </Box>
-        {/* END ROW 2 */}
+         END ROW 2 
         
-        {/* ROW 3 */}
+         ROW 3 
         <Box
           gridColumn="span 12"
           gridRow="span 3"
@@ -306,9 +330,9 @@ const Peserta = () => {
             <GeographyChart isDashboard={true} />
           </Box>
         </Box>
-        {/* END ROW 3 */}
+         END ROW 3 
         
-        {/* ROW 4 */}
+         ROW 4 
         <Box
           gridColumn="span 4"
           gridRow="span 2"
@@ -341,9 +365,9 @@ const Peserta = () => {
             <BarChart isDashboard={true} />
           </Box>
         </Box>
-        {/* END ROW 4 */}
+         END ROW 4
         
-        {/* ROW 5 */}
+        ROW 5
         <Box
           gridColumn="span 6"
           gridRow="span 4"
@@ -450,7 +474,7 @@ const Peserta = () => {
             </Box>
           </Box>
         </Box>
-        {/* END ROW 5 */}
+        END ROW 5 */}
         
         {/* ROW 6 */}
         <Box
@@ -499,7 +523,7 @@ const Peserta = () => {
               }}
             >
               <DataGrid
-                rows={mockDataContacts}
+                rows={dataPeserta}
                 columns={columns3}
                 components={{ Toolbar: GridToolbar }}
               />
