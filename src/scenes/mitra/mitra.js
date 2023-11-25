@@ -125,14 +125,14 @@ const columns3 = [
     cellClassName: "name-column--cell",
   },
   {
-    field: "first_name",
-    headerName: "Nama Depan Peserta",
+    field: "nama_peserta",
+    headerName: "Nama Peserta",
     flex: 1,
     cellClassName: "name-column--cell",
   },
   {
-    field: "last_name",
-    headerName: "Nama Belakang Peserta",
+    field: "jenis_kelamin",
+    headerName: "Jenis Kelamin Peserta",
     flex: 1,
     cellClassName: "name-column--cell",
   },
@@ -461,7 +461,7 @@ const Mitra = () => {
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Inbound
+            Mata Kuliah Mitra
           </Typography>
           <Box height="250px">
             <Box

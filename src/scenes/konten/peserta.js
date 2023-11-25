@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -19,7 +19,7 @@ import StatBox from "../../components/StatBox";
 // import { mockPieDataJenjang as dataJenjang } from "../../data/mockData";
 // import { mockPieDataSks as dataSks } from "../../data/mockData";
 // import { mockPieJenisPeserta as JenisPeserta } from "../../data/mockData";
-import { mockDataContacts } from "../../data/mockData";
+// import { mockDataContacts } from "../../data/mockData";
 const dataPeserta = require("../../data/dataPeserta.json");
 
 // var fs = require('fs');
@@ -61,47 +61,47 @@ const dataPeserta = require("../../data/dataPeserta.json");
 //     }
 // };
 
-const columns1 = [
-  { field: "id", headerName: "ID", flex: 0.5 },
-//   { field: "registrarId", headerName: "Kode Dosen" },
-  {
-    field: "access",
-    headerName: "Pekerjaan Peserta",
-    flex: 1,
-    cellClassName: "name-column--cell",
-  },
-  {
-    field: "age",
-    headerName: "Total",
-    flex: 1,
-  },
+// const columns1 = [
+//   { field: "id", headerName: "ID", flex: 0.5 },
+// //   { field: "registrarId", headerName: "Kode Dosen" },
 //   {
-//     field: "Detail",
-//     headerName: "Action",
-//     flex: 1,
-//   },
-];
-
-const columns2 = [
-  { field: "id", headerName: "ID", flex: 0.5 },
-//   { field: "registrarId", headerName: "Kode Dosen" },
-//   {
-//     field: "name",
-//     headerName: "Nama Dosen",
+//     field: "access",
+//     headerName: "Pekerjaan Peserta",
 //     flex: 1,
 //     cellClassName: "name-column--cell",
 //   },
-  {
-    field: "city",
-    headerName: "Institutsi Asal",
-    flex: 1,
-  },
-  {
-    field: "age",
-    headerName: "Total",
-    flex: 1,
-  },
-];
+//   {
+//     field: "age",
+//     headerName: "Total",
+//     flex: 1,
+//   },
+// //   {
+// //     field: "Detail",
+// //     headerName: "Action",
+// //     flex: 1,
+// //   },
+// ];
+
+// const columns2 = [
+//   { field: "id", headerName: "ID", flex: 0.5 },
+// //   { field: "registrarId", headerName: "Kode Dosen" },
+// //   {
+// //     field: "name",
+// //     headerName: "Nama Dosen",
+// //     flex: 1,
+// //     cellClassName: "name-column--cell",
+// //   },
+//   {
+//     field: "city",
+//     headerName: "Institutsi Asal",
+//     flex: 1,
+//   },
+//   {
+//     field: "age",
+//     headerName: "Total",
+//     flex: 1,
+//   },
+// ];
 
 const columns3 = [
   { field: "id", headerName: "ID", flex: 0.5 },
