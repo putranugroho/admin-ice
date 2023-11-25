@@ -7,6 +7,7 @@ import Team from "./scenes/team";
 import Matakuliah from "./scenes/konten/matakuliah";
 import Dosen from "./scenes/konten/dosen";
 import Peserta from "./scenes/konten/peserta";
+import Mitra from "./scenes/mitra/mitra";
 import PerguruanTinggi from "./scenes/konten/perguruanTinggi";
 import PesertaKonsorsium from "./scenes/konten/pesertaKonsorsium";
 import PesertaXuetang from "./scenes/konten/pesertaXuetang";
@@ -52,6 +53,7 @@ function App() {
               <Route path="/faq" element={<FAQ />} />
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/geography" element={<Geography />} />
+              <Route path="/mitra/:perguruan_tinggi" element={<Mitra />} />
             </Routes>
           </main>
         </div>
