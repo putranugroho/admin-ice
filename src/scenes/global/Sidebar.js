@@ -17,8 +17,8 @@ import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 // import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
-import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
-import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
+// import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+// import BookOutlinedIcon from '@mui/icons-material/BookOutlined';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -135,7 +135,7 @@ const Sidebar = () => {
             >
               Divisi Konten
             </Typography>
-            <Item
+            {/* <Item
               title="Mata Kuliah"
               to="/matakuliah"
               icon={<BookOutlinedIcon />}
@@ -148,7 +148,7 @@ const Sidebar = () => {
               icon={<BadgeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             <Item
               title="Peserta"
               to="/peserta"
@@ -156,13 +156,13 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Perguruan Tinggi"
               to="/perguruanTinggi"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             <Item
               title="Peserta Program Konsorsium"
               to="/pesertaKonsorsium"
@@ -170,34 +170,34 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Peserta Program XuetangX"
               to="/pesertaXuetang"
               icon={<GroupsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
             <Item
               title="Peserta Program edX"
-              to="/invoices"
+              to="/pesertaEdx"
               icon={<GroupsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
               title="Peserta Program Coursera"
-              to="/contacts"
+              to="/pesertaCoursera"
               icon={<GroupsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title="Peserta Program Mikrokredensial"
               to="/contacts"
               icon={<GroupsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
+            /> */}
 
             <Typography
               variant="h6"

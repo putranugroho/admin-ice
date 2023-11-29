@@ -18,6 +18,7 @@ import BarChart from "../../components/YBarChart";
 import GeographyChart from "../../components/GeographyChart";
 // import { mockPieDataJenjang as dataJenjang } from "../../data/mockData";
 // import { mockPieDataSks as dataSks } from "../../data/mockData";
+import { mockYBarData as data } from "../../data/mockData";
 import { mockPieJenisPeserta as JenisPeserta } from "../../data/mockData";
 import { mockDataContacts } from "../../data/mockData";
 
@@ -333,7 +334,7 @@ const PerguruanTinggi = () => {
             Berdasarkan Bahasa
           </Typography>
           <Box height="250px" mt="-20px" pl="10px">
-            <BarChart isDashboard={true} />
+            <BarChart data={data} isDashboard={true} />
           </Box>
         </Box>
         {/* END ROW 4 */}

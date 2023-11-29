@@ -40,9 +40,9 @@ const PieChart = ({ data, legendPos }) => {
       margin={{ top: 40, right: 20, bottom: 80, left: 20 }}
       activeOuterRadiusOffset={8}
       animate
-      innerRadius={0.5}
+      innerRadius={0.7}
       padAngle={5}
-      cornerRadius={3}
+      cornerRadius={2}
       borderColor={{
         from: "color",
         modifiers: [["darker", 0.2]],
@@ -86,7 +86,7 @@ const PieChart = ({ data, legendPos }) => {
           justify: false,
           translateX: legendPos.translateX,
           translateY: 56,
-          itemsSpacing: 0,
+          itemsSpacing: 10,
           itemWidth: legendPos.itemWidth,
           itemHeight: 18,
           itemTextColor: "#999",

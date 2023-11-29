@@ -10,6 +10,8 @@ import Peserta from "./scenes/konten/peserta";
 import PerguruanTinggi from "./scenes/konten/perguruanTinggi";
 import PesertaKonsorsium from "./scenes/konten/pesertaKonsorsium";
 import PesertaXuetang from "./scenes/konten/pesertaXuetang";
+import PesertaCoursera from "./scenes/konten/pesertaCoursera";
+import PesertaEdx from "./scenes/konten/pesertaEdx";
 import Invoices from "./scenes/invoices";
 import Contacts from "./scenes/contacts";
 import Bar from "./scenes/bar";
@@ -41,6 +43,8 @@ function App() {
               <Route path="/peserta" element={<Peserta />} />
               <Route path="/perguruanTinggi" element={<PerguruanTinggi />} />
               <Route path="/pesertaKonsorsium" element={<PesertaKonsorsium />} />
+              <Route path="/pesertaEdx" element={<PesertaEdx />} />
+              <Route path="/pesertaCoursera" element={<PesertaCoursera />} />
               <Route path="/pesertaXuetang" element={<PesertaXuetang />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/invoices" element={<Invoices />} />

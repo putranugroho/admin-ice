@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -13,114 +13,158 @@ import Header from "../../components/Header";
 // import ProgressCircle from "../../components/ProgressCircle";
 // import DonutChart from "../../components/DonutChart";
 import StatBox from "../../components/StatBox";
-// import PieChart from "../../components/PieChart";
-// import BarChart from "../../components/YBarChart";
+import PieChart from "../../components/PieChart";
+import BarChart from "../../components/YBarChart";
 // import GeographyChart from "../../components/GeographyChart";
-// import { mockPieDataJenjang as dataJenjang } from "../../data/mockData";
-// import { mockPieDataSks as dataSks } from "../../data/mockData";
-// import { mockPieJenisPeserta as JenisPeserta } from "../../data/mockData";
-import { mockDataContacts } from "../../data/mockData";
+// import { mockDataContacts } from "../../data/mockData";
 const dataPeserta = require("../../data/dataPeserta.json");
 
 // var fs = require('fs');
 // var obj = JSON.parse(fs.readFileSync('file', 'utf8'));
 
-// const styles = {
-//     instructor: {
-//         width: "430px",
-//         height: "150px",
-//         backgroundImage: "url('../../assets/dosen278.png')",
-//         backgroundRepeat: "no-repeat",
-//         backgroundSize: "contain",
-//         borderRadius: "15px",
-//         marginBottom: "15px"
-//     },
-//     self: {
-//         width: "430px",
-//         height: "150px",
-//         backgroundImage: "url('../../assets/dosen279.png')",
-//         backgroundRepeat: "no-repeat",
-//         backgroundSize: "contain",
-//         borderRadius: "15px"
-//     },
-//     container: {
-//         position: "relative",
-//         textAlign: "center",
-//     },
-//     text: {
-//         position: "absolute",
-//         width: "200px",
-//         top: "70%",
-//         left: "27%",
-//         transform: "translate(-50%, -50%)",
-//         fontSize: "64px",
-//         fontFamily: "Montserrat",
-//         fontStyle: "normal",
-//         fontWeight: "600",
-//         lineHeight: "96px",
-//     }
-// };
-
-const columns1 = [
-  { field: "id", headerName: "ID", flex: 0.5 },
-//   { field: "registrarId", headerName: "Kode Dosen" },
+const jenisPeserta1 = [
   {
-    field: "access",
-    headerName: "Pekerjaan Peserta",
-    flex: 1,
-    cellClassName: "name-column--cell",
+    id: "Umum",
+    label: "Umum",
+    value: 0,
+    percentage: 19.3,
+    color: "hsl(234, 70%, 50%)",
   },
   {
-    field: "age",
-    headerName: "Total",
-    flex: 1,
-  },
-//   {
-//     field: "Detail",
-//     headerName: "Action",
-//     flex: 1,
-//   },
-];
-
-const columns2 = [
-  { field: "id", headerName: "ID", flex: 0.5 },
-//   { field: "registrarId", headerName: "Kode Dosen" },
-//   {
-//     field: "name",
-//     headerName: "Nama Dosen",
-//     flex: 1,
-//     cellClassName: "name-column--cell",
-//   },
-  {
-    field: "city",
-    headerName: "Institutsi Asal",
-    flex: 1,
+    id: "Mahasiswa",
+    label: "Mahasiswa",
+    value: 0,
+    percentage: 54.8,
+    color: "hsl(234, 70%, 50%)",
   },
   {
-    field: "age",
-    headerName: "Total",
-    flex: 1,
+    id: "Dosen",
+    label: "Dosen",
+    value: 0,
+    percentage: 16.1,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Tendik",
+    label: "Tendik",
+    value: 0,
+    percentage: 9.8,
+    color: "hsl(234, 70%, 50%)",
   },
 ];
 
-const columns3 = [
+const jenisPeserta2 = [
+  {
+    id: "Provider",
+    label: "Provider",
+    value: 0,
+    percentage: 16.1,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Public",
+    label: "Public",
+    value: 0,
+    percentage: 9.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Konsorsium",
+    label: "Konsorsium",
+    value: 0,
+    percentage: 19.3,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Non Konsorsium",
+    label: "Non Konsorsium",
+    value: 0,
+    percentage: 54.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
+
+const mockYBarData = [
+  {
+    country: "< 18 Tahun",
+    donut: 1,
+    donutColor: "hsl(340, 70%, 50%)",
+  },
+  {
+    country: "18 - 22 Tahun",
+    donut: 1,
+    donutColor: "hsl(275, 70%, 50%)",
+  },
+  {
+    country: "23 - 28 Tahun",
+    donut: 2,
+    donutColor: "hsl(256, 70%, 50%)",
+  },
+  {
+    country: "29 - 34 Tahun",
+    donut: 3,
+    donutColor: "hsl(9, 70%, 50%)",
+  },
+  {
+    country: "35 - 40 Tahun",
+    donut: 4,
+    donutColor: "hsl(285, 70%, 50%)",
+  },
+  {
+    country: "> 40 Tahun",
+    donut: 5,
+    donutColor: "hsl(76, 70%, 50%)",
+  },
+];
+
+const styles = {
+    instructor: {
+        width: "430px",
+        height: "150px",
+        backgroundImage: "url('../../assets/dosen278.png')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        borderRadius: "15px",
+        marginBottom: "15px"
+    },
+    self: {
+        width: "430px",
+        height: "150px",
+        backgroundImage: "url('../../assets/dosen279.png')",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        borderRadius: "15px"
+    },
+    container: {
+        position: "relative",
+        textAlign: "center",
+    },
+    text: {
+        position: "absolute",
+        width: "200px",
+        top: "70%",
+        left: "27%",
+        transform: "translate(-50%, -50%)",
+        fontSize: "64px",
+        fontFamily: "Montserrat",
+        fontStyle: "normal",
+        fontWeight: "600",
+        lineHeight: "96px",
+    }
+};
+
+const columns = [
   { field: "id", headerName: "ID", flex: 0.5 },
 //   { field: "registrarId", headerName: "Kode Dosen" },
   {
-    field: "username",
-    headerName: "Username Peserta",
+    field: "nama_peserta",
+    headerName: "Nama Peserta",
     flex: 1,
     cellClassName: "name-column--cell",
   },
   {
-    field: "first_name",
-    headerName: "Nama Depan Peserta",
-    flex: 1,
-    cellClassName: "name-column--cell",
-  },
-  {
-    field: "last_name",
-    headerName: "Nama Belakang Peserta",
+    field: "jenis_kelamin",
+    headerName: "Jenis Kelamin",
     flex: 1,
     cellClassName: "name-column--cell",
   },
@@ -130,9 +174,16 @@ const columns3 = [
     flex: 1,
   },
   {
-    field: "is_active",
-    headerName: "Aktif",
+    field: "username",
+    headerName: "Username LMS ICE Institute",
     flex: 1,
+    cellClassName: "name-column--cell",
+  },
+  {
+    field: "perguruan_tinggi_peserta",
+    headerName: "Perguruan Tinggi Peserta",
+    flex: 1,
+    cellClassName: "name-column--cell",
   },
   {
     field: "last_login",
@@ -144,25 +195,81 @@ const columns3 = [
 
 const Peserta = () => {
   const [open, setOpen] = React.useState(true);
-  // const [peserta, setPeserta] = React.useState([])
+  const [totalPeserta, setTotalPeserta] = React.useState([])
+  const [totalMahasiswa, setTotalMahasiswa] = React.useState([])
+  const [totalDosen, setTotalDosen] = React.useState([])
+  const [totalUmum, setTotalUmum] = React.useState([])
+  const [totalStaff, setTotalStaff] = React.useState([])
+  const [totalMale, setTotalMale] = React.useState([])
+  const [totalFemale, setTotalFemale] = React.useState([])
+  // const [totalKonsorsium, setTotalKonsorsium] = React.useState([])
+  // const [totalNonKonsorsium, setTotalNonKonsorsium] = React.useState([])
+  // const [totalProvider, setTotalProvider] = React.useState([])
+  // const [totalPublic, setTotalPublic] = React.useState([])
 
   const handleOpen = () => {
     setOpen(!open);
   };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  console.log(dataPeserta);
 
-  // useEffect(() => {
-  //   if (dataPeserta.length !== 0) {
-  //     for (let i = 0; i < dataPeserta.length; i++) {
-  //       if (dataPeserta[i]) {
-  //         const element = array[i];
-  //       }
-        
-  //     }
-  //   }
-  // }, [dataPeserta])
+  useEffect(() => {
+    if (dataPeserta.length !== 0) {
+      setTotalPeserta(dataPeserta.length)
+      let countUmum = 0, countMahasiswa = 0, countDosen = 0, countStaff = 0, countMale = 0, countFemale = 0,countKonsorsium = 0, countNon = 0, countProvider = 0, countPublic = 0
+      for (let i = 0; i < dataPeserta.length; i++) {
+        if (dataPeserta[i].jenis_peserta === "Lecturer") {
+          countDosen = countDosen + 1
+        } else if (dataPeserta[i].jenis_peserta === "Student") {
+          countMahasiswa = countMahasiswa + 1
+        } else if (dataPeserta[i].jenis_peserta === "Public") {
+          countUmum = countUmum + 1
+        } else {
+          countStaff = countStaff + 1
+        }
+        if (dataPeserta[i].status_pt === "Konsorsium") {
+          countKonsorsium = countKonsorsium + 1
+        } else if (dataPeserta[i].status_pt === "Non Konsorsium") {
+          countNon = countNon + 1
+        } else if (dataPeserta[i].status_pt === "Provider") {
+          countProvider = countProvider + 1
+        } else if (dataPeserta[i].status_pt === "Public") {
+          countPublic = countPublic + 1
+        }
+        if (dataPeserta[i].jenis_kelamin === "Male") {
+          countMale = countMale + 1
+        } else if (dataPeserta[i].jenis_kelamin === "Female") {
+          countFemale = countFemale + 1
+        }
+      }
+      jenisPeserta1[0].value = countUmum
+      jenisPeserta1[0].percentage = (countUmum / dataPeserta.length * 100).toString().slice(0,4)
+      jenisPeserta1[1].value = countMahasiswa
+      jenisPeserta1[1].percentage = (countMahasiswa / dataPeserta.length * 100).toString().slice(0,4)
+      jenisPeserta1[2].value = countDosen
+      jenisPeserta1[2].percentage = (countDosen / dataPeserta.length * 100).toString().slice(0,4)
+      jenisPeserta1[3].value = countStaff
+      jenisPeserta1[3].percentage = (countStaff / dataPeserta.length * 100).toString().slice(0,4)
+      jenisPeserta2[0].value = countProvider
+      jenisPeserta2[0].percentage = (countProvider / dataPeserta.length * 100).toString().slice(0,4)
+      jenisPeserta2[1].value = countPublic
+      jenisPeserta2[1].percentage = (countPublic / dataPeserta.length * 100).toString().slice(0,4)
+      jenisPeserta2[2].value = countKonsorsium
+      jenisPeserta2[2].percentage = (countKonsorsium / dataPeserta.length * 100).toString().slice(0,4)
+      jenisPeserta2[3].value = countNon
+      jenisPeserta2[3].percentage = (countNon / dataPeserta.length * 100).toString().slice(0,4)
+      setTotalMahasiswa(countMahasiswa)
+      setTotalDosen(countDosen)
+      setTotalUmum(countUmum)
+      setTotalStaff(countStaff)
+      setTotalMale(countMale)
+      setTotalFemale(countFemale)
+      // setTotalKonsorsium(countKonsorsium)
+      // setTotalNonKonsorsium(countNon)
+      // setTotalProvider(countProvider)
+      // setTotalPublic(countPublic)
+    }
+  }, [])
 
   return (
     <Box m="20px">
@@ -210,7 +317,7 @@ const Peserta = () => {
           height="100px" 
         >
           <StatBox
-            title="6208"
+            title={totalPeserta}
             subtitle="Jumalah Peserta"
           />
         </Box>
@@ -223,7 +330,7 @@ const Peserta = () => {
           height="100px" 
         >
           <StatBox
-            title="1200"
+            title={totalUmum}
             subtitle="Peserta Umum"
           />
         </Box>
@@ -236,7 +343,7 @@ const Peserta = () => {
           height="100px" 
         >
           <StatBox
-            title="3400"
+            title={totalMahasiswa}
             subtitle="Peserta Mahasiswa"
           />
         </Box>
@@ -249,7 +356,7 @@ const Peserta = () => {
           height="100px" 
         >
           <StatBox
-            title="1000"
+            title={totalDosen}
             subtitle="Peserta Dosen"
           />
         </Box>
@@ -262,13 +369,13 @@ const Peserta = () => {
           height="100px" 
         >
           <StatBox
-            title="608"
+            title={totalStaff}
             subtitle="Peserta Tenaga Kependidikan"
           />
         </Box>
         {/* END ROW 1 */}
          
-        {/* ROW 2 
+        {/* ROW 2  */}
         <Box
           gridColumn="span 5"
           gridRow="span 2">
@@ -280,7 +387,7 @@ const Peserta = () => {
             style={styles.instructor}
             >
                 <div style={styles.text}>
-                    <b>214</b>
+                    <b>{totalFemale}</b>
                 </div>
             </Box>
             <Box
@@ -291,12 +398,12 @@ const Peserta = () => {
             style={styles.self}
             >
                 <div style={styles.text}>
-                    <b>214</b>
+                    <b>{totalMale}</b>
                 </div>
             </Box>
         </Box>
         <Box
-          gridColumn="span 6"
+          gridColumn="span 7"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
@@ -305,16 +412,16 @@ const Peserta = () => {
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Berdasarkan Status Mitra
+            Berdasarkan Jenis Peserta
           </Typography>
           <Box height="250px" mt="-20px" pl="10px">
-            <PieChart isDashboard={true} data= {JenisPeserta} legendPos={{translateX:0, itemWidth: 100}}/>
+            <PieChart isDashboard={true} data= {jenisPeserta1} legendPos={{translateX:0, itemWidth: 100}}/>
           </Box>
         </Box>
-         END ROW 2 
+         {/* END ROW 2  */}
         
-         ROW 3 
-        <Box
+         {/* ROW 3  */}
+        {/* <Box
           gridColumn="span 12"
           gridRow="span 3"
           backgroundColor={colors.primary[400]}
@@ -329,12 +436,12 @@ const Peserta = () => {
           <Box height="430px">
             <GeographyChart isDashboard={true} />
           </Box>
-        </Box>
-         END ROW 3 
+        </Box> */}
+         {/* END ROW 3  */}
         
-         ROW 4 
+         {/* ROW 4  */}
         <Box
-          gridColumn="span 4"
+          gridColumn="span 5"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
@@ -346,11 +453,13 @@ const Peserta = () => {
             Berdasarkan Status Mitra
           </Typography>
           <Box height="250px" mt="-20px" pl="10px">
-            <PieChart isDashboard={true} data= {JenisPeserta} legendPos={{translateX:0, itemWidth: 100}}/>
+            <PieChart isDashboard={true}
+            data= {jenisPeserta2}
+            legendPos={{translateX:0, itemWidth: 100}}/>
           </Box>
         </Box>
         <Box
-          gridColumn="span 8"
+          gridColumn="span 7"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
@@ -359,16 +468,16 @@ const Peserta = () => {
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Berdasarkan Bahasa
+            Berdasarkan Usia
           </Typography>
           <Box height="250px" mt="-20px" pl="10px">
-            <BarChart isDashboard={true} />
+            <BarChart data={mockYBarData} isDashboard={true} />
           </Box>
         </Box>
-         END ROW 4
+         {/* END ROW 4 */}
         
-        ROW 5
-        <Box
+        {/* ROW 5 */}
+        {/* <Box
           gridColumn="span 6"
           gridRow="span 4"
           backgroundColor={colors.primary[400]}
@@ -473,8 +582,8 @@ const Peserta = () => {
               />
             </Box>
           </Box>
-        </Box>
-        END ROW 5 */}
+        </Box> */}
+        {/* END ROW 5 */}
         
         {/* ROW 6 */}
         <Box
@@ -487,7 +596,7 @@ const Peserta = () => {
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Berdasarkan Jenjang
+            Detail Peserta
           </Typography>
           <Box height="250px">
             <Box
@@ -524,7 +633,7 @@ const Peserta = () => {
             >
               <DataGrid
                 rows={dataPeserta}
-                columns={columns3}
+                columns={columns}
                 components={{ Toolbar: GridToolbar }}
               />
             </Box>

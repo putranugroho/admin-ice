@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react'
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -9,17 +9,114 @@ import Header from "../../components/Header";
 // import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 // import PersonAddIcon from "@mui/icons-material/PersonAdd";
 // import TrafficIcon from "@mui/icons-material/Traffic";
+// import LineChart from "../../components/LineChart";
 // import ProgressCircle from "../../components/ProgressCircle";
 import PieChart from "../../components/PieChart";
+// import AreaBump from "../../components/AreaBumb";
 import StatBox from "../../components/StatBox";
 // import DonutChart from "../../components/DonutChart";
 import BarChart from "../../components/XBarChart";
-import GeographyChart from "../../components/GeographyChart";
-// import { mockPieDataJenjang as dataJenjang } from "../../data/mockData";
-// import { mockPieDataSks as dataSks } from "../../data/mockData";
-import { mockPieStatusPeserta as StatusPeserta } from "../../data/mockData";
-import { mockPieStatusPT as StatusPT } from "../../data/mockData";
-import { mockDataContacts } from "../../data/mockData";
+const dataCourseCoursera = require("../../data/reportCourseCoursera.json");
+const dataUserCoursera = require("../../data/reportUserCoursera.json");
+
+const jenisPeserta1 = [
+  {
+    id: "Umum",
+    label: "Umum",
+    value: 0,
+    percentage: 19.3,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Mahasiswa",
+    label: "Mahasiswa",
+    value: 0,
+    percentage: 54.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Dosen",
+    label: "Dosen",
+    value: 0,
+    percentage: 16.1,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Tendik",
+    label: "Tendik",
+    value: 0,
+    percentage: 9.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
+
+const jenisPeserta2 = [
+  {
+    id: "Mahasiswa",
+    label: "Mahasiswa",
+    value: 0,
+    percentage: 54.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Dosen",
+    label: "Dosen",
+    value: 0,
+    percentage: 16.1,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Tendik",
+    label: "Tendik",
+    value: 0,
+    percentage: 9.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
+
+const mockBarData = [
+  {
+    title: "Provider",
+    hotdog: 0,
+    "hot dogColor": "hsl(229, 70%, 50%)",
+  },
+  {
+    title: "Public",
+    hotdog: 0,
+    "hot dogColor": "hsl(229, 70%, 50%)",
+  },
+  {
+    title: "Konsorsium",
+    hotdog: 0,
+    "hot dogColor": "hsl(229, 70%, 50%)",
+  },
+  {
+    title: "Non Konsorsium",
+    hotdog: 0,
+    "hot dogColor": "hsl(229, 70%, 50%)",
+  },
+];
+
+const columns = [
+  { field: "id", headerName: "Number", flex: 0.5 },
+  // { field: "registrarId", headerName: "Kode Dosen" },
+  {
+    field: "course_publisher",
+    headerName: "Institutsi Asal",
+    flex: 1,
+  },
+  {
+    field: "course_title",
+    headerName: "Mata Kuliah",
+    flex: 1,
+    cellClassName: "name-column--cell",
+  },
+  {
+    field: "total_course_user",
+    headerName: "Jumlah Peserta",
+    flex: 1,
+  },
+];
 
 const styles = {
     instructor: {
@@ -57,41 +154,87 @@ const styles = {
     }
 };
 
-const columns = [
-  { field: "id", headerName: "ID", flex: 0.5 },
-  // { field: "registrarId", headerName: "Kode Dosen" },
-  {
-    field: "city",
-    headerName: "Institutsi Asal",
-    flex: 1,
-  },
-  {
-    field: "name",
-    headerName: "Mata Kuliah",
-    flex: 1,
-    cellClassName: "name-column--cell",
-  },
-  {
-    field: "age",
-    headerName: "Jumlah Peserta",
-    flex: 1,
-  },
-  {
-    field: "detail",
-    headerName: "Action",
-    flex: 1,
-  },
-];
-
 
 const PesertaKonsorsium = () => {
   const [open, setOpen] = React.useState(true);
+  const [totalPeserta, setTotalPeserta] = React.useState(true);
+  // const [totalMahasiswa, setTotalMahasiswa] = React.useState([])
+  // const [totalDosen, setTotalDosen] = React.useState([])
+  // const [totalUmum, setTotalUmum] = React.useState([])
+  // const [totalStaff, setTotalStaff] = React.useState([])
+  const [totalMale, setTotalMale] = React.useState([])
+  const [totalFemale, setTotalFemale] = React.useState([])
+  // const [totalKonsorsium, setTotalKonsorsium] = React.useState([])
+  // const [totalNonKonsorsium, setTotalNonKonsorsium] = React.useState([])
+  // const [totalProvider, setTotalProvider] = React.useState([])
+  // const [totalPublic, setTotalPublic] = React.useState([])
 
   const handleOpen = () => {
     setOpen(!open);
   };
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  useEffect(() => {
+    if (dataUserCoursera.length !== 0) {
+      let countTotalUser = 0,
+      countUmum = 0, countMahasiswa = 0, countDosen = 0, countStaff = 0,
+      countKonsorsium = 0, countNon = 0, countProvider = 0, countPublic = 0,
+      countMale = 0, countFemale = 0
+      
+
+      for (let i = 0; i < dataUserCoursera.length; i++) {
+        if (dataUserCoursera[i].tipe_peserta === "Lecturer") {
+          countDosen = countDosen + 1
+        } else if (dataUserCoursera[i].tipe_peserta === "Student") {
+          countMahasiswa = countMahasiswa + 1
+        } else if (dataUserCoursera[i].tipe_peserta === "Public") {
+          countUmum = countUmum + 1
+        } else {
+          countStaff = countStaff + 1
+        }
+        if (dataUserCoursera[i].status_perguruan_tinggi === "Konsorsium") {
+          countKonsorsium = countKonsorsium + 1
+        } else if (dataUserCoursera[i].status_perguruan_tinggi === "Non Konsorsium") {
+          countNon = countNon + 1
+        } else if (dataUserCoursera[i].status_perguruan_tinggi === "Provider") {
+          countProvider = countProvider + 1
+        } else if (dataUserCoursera[i].status_perguruan_tinggi === "Public") {
+          countPublic = countPublic + 1
+        }
+        if (dataUserCoursera[i].gender === "Male") {
+          countMale = countMale + 1
+        } else if (dataUserCoursera[i].gender === "Female") {
+          countFemale = countFemale + 1
+        }
+        countTotalUser = countTotalUser + dataUserCoursera[i].total_course_title
+      }
+      mockBarData[0].hotdog = countProvider
+      mockBarData[1].hotdog = countPublic
+      mockBarData[2].hotdog = countKonsorsium
+      mockBarData[3].hotdog = countNon
+      jenisPeserta1[0].value = countUmum
+      jenisPeserta1[1].value = countMahasiswa
+      jenisPeserta1[2].value = countDosen
+      jenisPeserta1[3].value = countStaff
+      jenisPeserta1[0].percentage = (countProvider / dataUserCoursera.length * 100).toString().slice(0,4)
+      jenisPeserta1[1].percentage = (countPublic / dataUserCoursera.length * 100).toString().slice(0,4)
+      jenisPeserta1[2].percentage = (countKonsorsium / dataUserCoursera.length * 100).toString().slice(0,4)
+      jenisPeserta1[3].percentage = (countNon / dataUserCoursera.length * 100).toString().slice(0,4)
+
+      setTotalPeserta(countTotalUser)
+      // setTotalMahasiswa(countMahasiswa)
+      // setTotalDosen(countDosen)
+      // setTotalUmum(countUmum)
+      // setTotalStaff(countStaff)
+      setTotalMale(countMale)
+      setTotalFemale(countFemale)
+      // setTotalKonsorsium(countKonsorsium)
+      // setTotalNonKonsorsium(countNon)
+      // setTotalProvider(countProvider)
+      // setTotalPublic(countPublic)
+    }
+  }, [])
 
   return (
     <Box m="20px">
@@ -139,7 +282,7 @@ const PesertaKonsorsium = () => {
           height="100px" 
         >
           <StatBox
-            title="6208"
+            title={dataUserCoursera.length}
             subtitle="Jumalah Peserta"
           />
         </Box>
@@ -152,7 +295,7 @@ const PesertaKonsorsium = () => {
           height="100px" 
         >
           <StatBox
-            title="1200"
+            title={totalPeserta}
             subtitle="Jumalah Peserta Berdasarkan Mata Kuliah"
           />
         </Box>
@@ -165,7 +308,7 @@ const PesertaKonsorsium = () => {
           height="100px" 
         >
           <StatBox
-            title="3400"
+            title="0"
             subtitle="Jumalah Peserta Berdasarkan Institusi"
           />
         </Box>
@@ -178,7 +321,7 @@ const PesertaKonsorsium = () => {
           height="100px" 
         >
           <StatBox
-            title="1000"
+            title={dataCourseCoursera.length}
             subtitle="Jumlah Mata Kuliah"
           />
         </Box>
@@ -191,7 +334,7 @@ const PesertaKonsorsium = () => {
           height="100px" 
         >
           <StatBox
-            title="608"
+            title="183"
             subtitle="Jumlah Institusi"
           />
         </Box>
@@ -199,7 +342,7 @@ const PesertaKonsorsium = () => {
         
         {/* ROW 2 */}
         <Box
-          gridColumn="span 4"
+          gridColumn="span 6"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
@@ -208,14 +351,14 @@ const PesertaKonsorsium = () => {
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Berdasarkan Bahasa
+            Status Perguruan Tinggi Peserta
           </Typography>
           <Box height="250px" mt="-20px" pl="10px">
-            <BarChart isDashboard={true} />
+            <BarChart data={mockBarData} isDashboard={true} />
           </Box>
         </Box>
         <Box
-          gridColumn="span 4"
+          gridColumn="span 6"
           gridRow="span 2">
             <Box
             backgroundColor={colors.primary[400]}
@@ -225,7 +368,7 @@ const PesertaKonsorsium = () => {
             style={styles.instructor}
             >
                 <div style={styles.text}>
-                    <b>214</b>
+                    <b>{totalFemale}</b>
                 </div>
             </Box>
             <Box
@@ -236,12 +379,12 @@ const PesertaKonsorsium = () => {
             style={styles.self}
             >
                 <div style={styles.text}>
-                    <b>214</b>
+                    <b>{totalMale}</b>
                 </div>
             </Box>
         </Box>
-        <Box
-          gridColumn="span 4"
+        {/* <Box
+          gridColumn="span 0"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
         >
@@ -255,7 +398,7 @@ const PesertaKonsorsium = () => {
           <Box height="250px">
             <GeographyChart isDashboard={true} />
           </Box>
-        </Box>
+        </Box> */}
         {/* END ROW 2 */}
         
         {/* ROW 3 */}
@@ -272,7 +415,7 @@ const PesertaKonsorsium = () => {
             Status Peserta dari Perguruan Tinggi
           </Typography>
           <Box height="250px" mt="-20px" pl="10px">
-            <PieChart isDashboard={true} data= {StatusPeserta} legendPos={{translateX:0, itemWidth: 120}}/>
+            <PieChart isDashboard={true} data= {jenisPeserta2} legendPos={{translateX:0, itemWidth: 120}}/>
           </Box>
         </Box>
         <Box
@@ -285,15 +428,34 @@ const PesertaKonsorsium = () => {
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
-            Status Perguruan Tinggi Peserta
+            Tipe Peserta
           </Typography>
           <Box height="250px" mt="-20px" pl="10px">
-            <PieChart isDashboard={true} data= {StatusPT} legendPos={{translateX:0, itemWidth: 120}}/>
+            <PieChart isDashboard={true} data= {jenisPeserta1} legendPos={{translateX:0, itemWidth: 100}}/>
           </Box>
         </Box>
         {/* END ROW 3 */}
         
         {/* ROW 4 */}
+        {/* <Box
+          gridColumn="span 12"
+          gridRow="span 2"
+          backgroundColor={colors.primary[400]}
+          >
+            <Typography
+              variant="h5"
+              fontWeight="600"
+              sx={{ padding: "30px 30px 0 30px" }}
+            >
+              Status Peserta dari Perguruan Tinggi
+            </Typography>
+            <Box height="250px" mt="-20px" pl="10px">
+              <AreaBump isDashboard={true} data= {StatusPeserta}/>
+            </Box>
+        </Box> */}
+        {/* END ROW 4 */}
+        
+        {/* ROW 5 */}
         <Box
           gridColumn="span 12"
           gridRow="span 2"
@@ -340,14 +502,14 @@ const PesertaKonsorsium = () => {
               }}
             >
               <DataGrid
-                rows={mockDataContacts}
+                rows={dataCourseCoursera}
                 columns={columns}
                 components={{ Toolbar: GridToolbar }}
               />
             </Box>
           </Box>
         </Box>
-        {/* END ROW 4 */}
+        {/* END ROW 5 */}
       </Box>
     </Box>
   );
