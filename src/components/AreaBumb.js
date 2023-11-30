@@ -1,11 +1,11 @@
 import { ResponsiveAreaBump  } from "@nivo/bump";
-import { useTheme } from "@mui/material";
-import { tokens } from "../theme";
+// import { useTheme } from "@mui/material";
+// import { tokens } from "../theme";
 import { mockLineData as data } from "../data/mockData";
 
 const AreaBump  = ({ isCustomLineColors = false, isDashboard = false }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+//   const theme = useTheme();
+//   const colors = tokens(theme.palette.mode);
 
   return (
     <ResponsiveAreaBump

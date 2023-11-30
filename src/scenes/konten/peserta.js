@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -16,42 +16,92 @@ import StatBox from "../../components/StatBox";
 import PieChart from "../../components/PieChart";
 import BarChart from "../../components/YBarChart";
 // import GeographyChart from "../../components/GeographyChart";
+// import { mockPieDataJenjang as dataJenjang } from "../../data/mockData";
+// import { mockPieDataSks as dataSks } from "../../data/mockData";
+// import { mockPieJenisPeserta as JenisPeserta } from "../../data/mockData";
 // import { mockDataContacts } from "../../data/mockData";
 const dataPeserta = require("../../data/dataPeserta.json");
 
 // var fs = require('fs');
 // var obj = JSON.parse(fs.readFileSync('file', 'utf8'));
 
-const jenisPeserta1 = [
-  {
-    id: "Umum",
-    label: "Umum",
-    value: 0,
-    percentage: 19.3,
-    color: "hsl(234, 70%, 50%)",
-  },
-  {
-    id: "Mahasiswa",
-    label: "Mahasiswa",
-    value: 0,
-    percentage: 54.8,
-    color: "hsl(234, 70%, 50%)",
-  },
-  {
-    id: "Dosen",
-    label: "Dosen",
-    value: 0,
-    percentage: 16.1,
-    color: "hsl(234, 70%, 50%)",
-  },
-  {
-    id: "Tendik",
-    label: "Tendik",
-    value: 0,
-    percentage: 9.8,
-    color: "hsl(234, 70%, 50%)",
-  },
-];
+// const styles = {
+//     instructor: {
+//         width: "430px",
+//         height: "150px",
+//         backgroundImage: "url('../../assets/dosen278.png')",
+//         backgroundRepeat: "no-repeat",
+//         backgroundSize: "contain",
+//         borderRadius: "15px",
+//         marginBottom: "15px"
+//     },
+//     self: {
+//         width: "430px",
+//         height: "150px",
+//         backgroundImage: "url('../../assets/dosen279.png')",
+//         backgroundRepeat: "no-repeat",
+//         backgroundSize: "contain",
+//         borderRadius: "15px"
+//     },
+//     container: {
+//         position: "relative",
+//         textAlign: "center",
+//     },
+//     text: {
+//         position: "absolute",
+//         width: "200px",
+//         top: "70%",
+//         left: "27%",
+//         transform: "translate(-50%, -50%)",
+//         fontSize: "64px",
+//         fontFamily: "Montserrat",
+//         fontStyle: "normal",
+//         fontWeight: "600",
+//         lineHeight: "96px",
+//     }
+// };
+
+// const columns1 = [
+//   { field: "id", headerName: "ID", flex: 0.5 },
+// //   { field: "registrarId", headerName: "Kode Dosen" },
+//   {
+//     field: "access",
+//     headerName: "Pekerjaan Peserta",
+//     flex: 1,
+//     cellClassName: "name-column--cell",
+//   },
+//   {
+//     field: "age",
+//     headerName: "Total",
+//     flex: 1,
+//   },
+// //   {
+// //     field: "Detail",
+// //     headerName: "Action",
+// //     flex: 1,
+// //   },
+// ];
+
+// const columns2 = [
+//   { field: "id", headerName: "ID", flex: 0.5 },
+// //   { field: "registrarId", headerName: "Kode Dosen" },
+// //   {
+// //     field: "name",
+// //     headerName: "Nama Dosen",
+// //     flex: 1,
+// //     cellClassName: "name-column--cell",
+// //   },
+//   {
+//     field: "city",
+//     headerName: "Institutsi Asal",
+//     flex: 1,
+//   },
+//   {
+//     field: "age",
+//     headerName: "Total",
+//     flex: 1,
+//   },
+// ];
 
 const jenisPeserta2 = [
   {
