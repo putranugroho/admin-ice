@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 // import { mockTransactions } from "../../data/mockData";
 // import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 // import EmailIcon from "@mui/icons-material/Email";
@@ -94,7 +96,7 @@ const dataPeserta = require("../../data/dataPeserta.json");
 //   {
 //     field: "city",
 //     headerName: "Institutsi Asal",
-//     flex: 1,
+//     flex: 1, 
 //   },
 //   {
 //     field: "age",
@@ -102,6 +104,37 @@ const dataPeserta = require("../../data/dataPeserta.json");
 //     flex: 1,
 //   },
 // ];
+
+const jenisPeserta1 = [
+  {
+    id: "Umum",
+    label: "Umum",
+    value: 0,
+    percentage: 19.3,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Mahasiswa",
+    label: "Mahasiswa",
+    value: 0,
+    percentage: 54.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Dosen",
+    label: "Dosen",
+    value: 0,
+    percentage: 16.1,
+    color: "hsl(234, 70%, 50%)",
+  },
+  {
+    id: "Tendik",
+    label: "Tendik",
+    value: 0,
+    percentage: 9.8,
+    color: "hsl(234, 70%, 50%)",
+  },
+];
 
 const jenisPeserta2 = [
   {
@@ -256,6 +289,8 @@ const Peserta = () => {
   // const [totalNonKonsorsium, setTotalNonKonsorsium] = React.useState([])
   // const [totalProvider, setTotalProvider] = React.useState([])
   // const [totalPublic, setTotalPublic] = React.useState([])
+  const navigate = useNavigate()
+  const UserLogin = useSelector((state) => state.UserLogin)
 
   const handleOpen = () => {
     setOpen(!open);
@@ -264,6 +299,15 @@ const Peserta = () => {
   const colors = tokens(theme.palette.mode);
 
   useEffect(() => {
+
+    console.log('Test', UserLogin)
+    if (UserLogin.success && UserLogin.data) {
+      navigate(`/mitra/${UserLogin.data[0].mitra}`, {})
+    } else {
+      navigate(`/login`, {})
+    }
+
+    
     if (dataPeserta.length !== 0) {
       setTotalPeserta(dataPeserta.length)
       let countUmum = 0, countMahasiswa = 0, countDosen = 0, countStaff = 0, countMale = 0, countFemale = 0,countKonsorsium = 0, countNon = 0, countProvider = 0, countPublic = 0
@@ -319,7 +363,7 @@ const Peserta = () => {
       // setTotalProvider(countProvider)
       // setTotalPublic(countPublic)
     }
-  }, [])
+  }, [UserLogin, navigate])
 
   return (
     <Box m="20px">

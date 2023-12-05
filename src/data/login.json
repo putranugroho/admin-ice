@@ -1,0 +1,44 @@
+[
+    {
+      "email": "admin@icei.com",
+      "password": "123456",
+      "status": "1",
+      "mitra": "ice_institute"
+    },
+    {
+      "email": "teamkonten@icei.com",
+      "password": "123456",
+      "status": "2",
+      "mitra": "ice_institute"
+    },
+    {
+      "email": "teamkerjasama@icei.com",
+      "password": "123456",
+      "status": "2",
+      "mitra": "ice_institute"
+    },
+    {
+      "email": "teamkeuangan@icei.com",
+      "password": "123456",
+      "status": "2",
+      "mitra": "ice_institute"
+    },
+    {
+      "email": "mitra@ut.com",
+      "password": "123456",
+      "status": "3",
+      "mitra": "universitas_terbuka"
+    },
+    {
+      "email": "mitra@ipb.com",
+      "password": "123456",
+      "status": "3",
+      "mitra": "institut_pertanian_bogor"
+    },
+    {
+      "email": "mitra@unj.com",
+      "password": "123456",
+      "status": "3",
+      "mitra": "universitas_negeri_jakarta"
+    }
+]

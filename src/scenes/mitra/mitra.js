@@ -5,6 +5,9 @@ import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { useParams } from 'react-router-dom'
 import StatBox from "../../components/StatBox";
+import { useSelector } from 'react-redux'
+// import { login } from '../../redux/reducer/Login'
+import { useNavigate } from 'react-router-dom'
 // import { mockTransactions } from "../../data/mockData";
 // import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 // import EmailIcon from "@mui/icons-material/Email";
@@ -180,6 +183,9 @@ const Mitra = () => {
   const [mataKuliah, setMataKuliah] = React.useState([])
   let { perguruan_tinggi } = useParams()
   perguruan_tinggi = perguruan_tinggi.split("_").join(" ")
+  const navigate = useNavigate()
+  // const dispatch = useDispatch()
+  const UserLogin = useSelector((state) => state.UserLogin)
 
   const handleOpen = () => {
     setOpen(!open);
@@ -201,6 +207,14 @@ const Mitra = () => {
     let data_outbound = []
     let data_inbound = []
     let data_mk = []
+
+    console.log('Test', UserLogin)
+    if (UserLogin.success && UserLogin.data) {
+      navigate(`/mitra/${UserLogin.data[0].mitra}`, {})
+    } else {
+      navigate(`/login`, {})
+    }
+
     if (dataPeserta.length !== 0) {
       for (let i = 0; i < dataPeserta.length; i++) {
         if (dataPeserta[i].institusi_peserta === perguruan_tinggi) {
@@ -209,8 +223,6 @@ const Mitra = () => {
         
       }
       for (let i = 0; i < dataPesertaLMS.length; i++) {
-        console.log(dataPesertaLMS[i].institusi_peserta);
-        console.log(perguruan_tinggi);
         if (dataPesertaLMS[i].institusi_peserta === perguruan_tinggi && dataPesertaLMS[i].institusi_mk !== perguruan_tinggi) {
           data_outbound.push(dataPesertaLMS[i])
         } else if (dataPesertaLMS[i].institusi_peserta !== perguruan_tinggi && dataPesertaLMS[i].institusi_mk === perguruan_tinggi) {
@@ -245,7 +257,7 @@ const Mitra = () => {
       console.log(data_inbound);
       console.log(data_outbound);
     }
-  }, [perguruan_tinggi])
+  }, [UserLogin, navigate, perguruan_tinggi])
 
   return (
     <Box m="20px">
@@ -453,7 +465,7 @@ const Mitra = () => {
         {/* ROW 5 */}
         <Box
           gridColumn="span 12"
-          gridRow="span 4"
+          gridRow="span 5"
           backgroundColor={colors.primary[400]}
         >
           <Typography
@@ -506,7 +518,7 @@ const Mitra = () => {
         </Box>
         <Box
           gridColumn="span 12"
-          gridRow="span 4"
+          gridRow="span 5"
           backgroundColor={colors.primary[400]}
         >
           <Typography
@@ -559,7 +571,7 @@ const Mitra = () => {
         </Box>
         <Box
           gridColumn="span 12"
-          gridRow="span 4"
+          gridRow="span 5"
           backgroundColor={colors.primary[400]}
         >
           <Typography
@@ -615,7 +627,7 @@ const Mitra = () => {
         {/* ROW 6 */}
         <Box
           gridColumn="span 12"
-          gridRow="span 4"
+          gridRow="span 5"
           backgroundColor={colors.primary[400]}
         >
           <Typography

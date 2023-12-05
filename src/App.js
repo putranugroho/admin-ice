@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
+import Login from "./scenes/global/Login";
 import Dashboard from "./scenes/dashboard";
 import Team from "./scenes/team";
 import Matakuliah from "./scenes/konten/matakuliah";
@@ -57,6 +58,7 @@ function App() {
               <Route path="/faq" element={<FAQ />} />
               <Route path="/calendar" element={<Calendar />} />
               <Route path="/geography" element={<Geography />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/mitra/:perguruan_tinggi" element={<Mitra />} />
             </Routes>
           </main>
